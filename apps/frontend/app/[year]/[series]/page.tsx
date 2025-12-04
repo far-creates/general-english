@@ -27,7 +27,7 @@ export default function SeriesPage({
   return (
     <div className="container mx-auto p-8">
       <Link
-        href={`/year/${year}`}
+        href={`/${year}`}
         className="inline-block mb-6 text-blue-500 hover:underline"
       >
         ← بازگشت
@@ -39,7 +39,7 @@ export default function SeriesPage({
         {data.data.map((quiz: any) => (
           <Link
             key={quiz.id}
-            href={`/year/${year}/series/${series}/quiz/${quiz.id}`}
+            href={`/${year}/${series}/${quiz.id}`}
             className="p-6 border-2 border-gray-300 rounded-lg hover:border-blue-500 transition-colors"
           >
             <h3 className="text-xl font-bold mb-2">{quiz.title}</h3>

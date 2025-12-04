@@ -1,10 +1,10 @@
 /**
  * Years Routes
- * Defines routes for years endpoints
  */
 
 import { Router } from "express";
 import yearsController from "../controllers/years.controller";
+import seriesController from "@/controllers/series.controller";
 
 const router = Router();
 
@@ -19,5 +19,6 @@ router.get("/", yearsController.getAllYears);
  * Get metadata for a specific year
  */
 router.get("/:year", yearsController.getYearById);
+router.get("/:year/:series", seriesController.getSeriesById);
 
 export default router;

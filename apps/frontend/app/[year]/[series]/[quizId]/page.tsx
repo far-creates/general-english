@@ -19,7 +19,9 @@ export default function QuizPage({
 
   useEffect(() => {
     fetchQuiz(quizId).then((res) => {
-      setQuiz(res.data);
+      if (res.success && res.data) {
+        setQuiz(res.data);
+      }
       setLoading(false);
     });
   }, [quizId]);
@@ -41,7 +43,7 @@ export default function QuizPage({
         if (answers[idx] === q.correctAnswer) score++;
       });
       alert(`امتیاز شما: ${score} از ${quiz.questions.length}`);
-      router.push(`/year/${year}/series/${series}`);
+      router.push(`/${year}/${series}`);
     } else {
       setCurrentQ(currentQ + 1);
     }

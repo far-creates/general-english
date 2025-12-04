@@ -1,10 +1,10 @@
-**
+/**
  * Error Handler Middleware
  * Global error handling for Express application
  */
 
-import { Request, Response, NextFunction } from 'express';
-import { ErrorResponse } from '@quiz/types';
+import { Request, Response, NextFunction } from "express";
+import { ErrorResponse } from "@quiz/types";
 
 /**
  * Custom error class for application errors
@@ -33,7 +33,7 @@ export function errorHandler(
 ): void {
   // Default error values
   let statusCode = 500;
-  let message = 'Internal server error';
+  let message = "Internal server error";
   let isOperational = false;
 
   // Check if it's our custom AppError
@@ -47,7 +47,7 @@ export function errorHandler(
   }
 
   // Log error for debugging (in production, use proper logging service)
-  console.error('Error:', {
+  console.error("Error:", {
     message: err.message,
     stack: err.stack,
     statusCode,
@@ -63,7 +63,7 @@ export function errorHandler(
   };
 
   // In development, include stack trace
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     errorResponse.details = {
       stack: err.stack,
     };
@@ -85,10 +85,7 @@ export function notFoundHandler(
   res: Response,
   next: NextFunction
 ): void {
-  const error = new AppError(
-    `Route ${req.originalUrl} not found`,
-    404
-  );
+  const error = new AppError(`Route ${req.originalUrl} not found`, 404);
   next(error);
 }
 

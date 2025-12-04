@@ -39,7 +39,7 @@ export default function YearPage({
         {data.data.map((series: any) => (
           <Link
             key={series.series}
-            href={`/year/${year}/series/${series.series}`}
+            href={`/${year}/${series.series}`}
             className="p-6 border-2 border-gray-300 rounded-lg hover:border-blue-500 transition-colors"
           >
             <h2 className="text-2xl font-bold mb-2">سری {series.series}</h2>

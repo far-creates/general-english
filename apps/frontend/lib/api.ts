@@ -51,7 +51,6 @@ async function fetchAPI<T>(endpoint: string): Promise<ApiResponse<T>> {
 }
 
 /**
- * Get all available years
  * GET /api/years
  */
 export async function fetchYears(): Promise<ApiResponse<YearData[]>> {
@@ -59,7 +58,6 @@ export async function fetchYears(): Promise<ApiResponse<YearData[]>> {
 }
 
 /**
- * Get metadata for a specific year
  * GET /api/years/:year
  */
 export async function fetchYear(year: number): Promise<ApiResponse<YearData>> {
@@ -67,39 +65,25 @@ export async function fetchYear(year: number): Promise<ApiResponse<YearData>> {
 }
 
 /**
- * Get all series for a specific year
- * GET /api/years/:year/series
+ * GET /api/series/:year
  */
 export async function fetchSeries(
   year: number
 ): Promise<ApiResponse<SeriesData[]>> {
-  return fetchAPI<SeriesData[]>(`/years/${year}/series`);
+  return fetchAPI<SeriesData[]>(`/series/${year}`);
 }
 
 /**
- * Get metadata for a specific series
- * GET /api/years/:year/series/:series
- */
-export async function fetchSeriesById(
-  year: number,
-  series: number
-): Promise<ApiResponse<SeriesData>> {
-  return fetchAPI<SeriesData>(`/years/${year}/series/${series}`);
-}
-
-/**
- * Get all quizzes for a specific year and series
- * GET /api/years/:year/series/:series/quizzes
+ * GET /api/quizzes/:year/:series
  */
 export async function fetchQuizzes(
   year: number,
   series: number
 ): Promise<ApiResponse<QuizSummary[]>> {
-  return fetchAPI<QuizSummary[]>(`/years/${year}/series/${series}/quizzes`);
+  return fetchAPI<QuizSummary[]>(`/quizzes/${year}/${series}`);
 }
 
 /**
- * Get a specific quiz by ID (full data with questions)
  * GET /api/quiz/:id
  */
 export async function fetchQuiz(quizId: string): Promise<ApiResponse<Quiz>> {
@@ -107,7 +91,6 @@ export async function fetchQuiz(quizId: string): Promise<ApiResponse<Quiz>> {
 }
 
 /**
- * Get quiz summary without full question data
  * GET /api/quiz/:id/summary
  */
 export async function fetchQuizSummary(
@@ -117,30 +100,26 @@ export async function fetchQuizSummary(
 }
 
 /**
- * Search quizzes by keyword
- * GET /api/quizzes/search?q=keyword
+ * GET /api/search?q=keyword
  */
 export async function searchQuizzes(
   searchTerm: string
 ): Promise<ApiResponse<QuizSummary[]>> {
   const encodedTerm = encodeURIComponent(searchTerm);
-  return fetchAPI<QuizSummary[]>(`/quizzes/search?q=${encodedTerm}`);
+  return fetchAPI<QuizSummary[]>(`/search?q=${encodedTerm}`);
 }
 
 /**
- * Check API health
  * GET /api/health
  */
 export async function checkHealth(): Promise<ApiResponse<{ message: string }>> {
   return fetchAPI<{ message: string }>("/health");
 }
 
-// Default export with all API functions
 export default {
   fetchYears,
   fetchYear,
   fetchSeries,
-  fetchSeriesById,
   fetchQuizzes,
   fetchQuiz,
   fetchQuizSummary,

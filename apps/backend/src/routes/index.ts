@@ -14,50 +14,33 @@ const router = Router();
 /**
  * Mount all routes
  *
- * Route Structure:
- * - GET /api/years                                      - Get all years
- * - GET /api/years/:year                                - Get specific year metadata
- * - GET /api/years/:year/series                         - Get series for a year
- * - GET /api/years/:year/series/:series                 - Get specific series metadata
- * - GET /api/years/:year/series/:series/quizzes         - Get quizzes for a series
- * - GET /api/quiz/:id                                   - Get full quiz with questions
- * - GET /api/quiz/:id/summary                           - Get quiz summary
- * - GET /api/quizzes/search?q=keyword                   - Search quizzes
+ * SIMPLIFIED Route Structure:
+ * - GET /api/years                    - Get all years
+ * - GET /api/years/:year              - Get specific year metadata
+ * - GET /api/series/:year             - Get series for a year
+ * - GET /api/quizzes/:year/:series    - Get quizzes for a series
+ * - GET /api/quiz/:id                 - Get full quiz with questions
+ * - GET /api/quiz/:id/summary         - Get quiz summary
+ * - GET /api/search?q=keyword         - Search quizzes
  */
 
-// Years routes - /api/years
+// Years routes
 router.use("/years", yearsRoutes);
 
-// Series routes - /api/years/:year/series
-// Note: This creates nested routing under years
-router.use(
-  "/years/:year/series",
-  (req, res, next) => {
-    // Pass year parameter to series routes
-    next();
-  },
-  seriesRoutes
-);
+// Series routes
+router.use("/series", seriesRoutes);
 
-// Quizzes routes - /api/years/:year/series/:series/quizzes
-router.use(
-  "/years/:year/series/:series/quizzes",
-  (req, res, next) => {
-    // Pass year and series parameters to quizzes routes
-    next();
-  },
-  quizzesRoutes
-);
+// Quizzes routes
+router.use("/quizzes", quizzesRoutes);
 
-// Quiz routes - /api/quiz
+// Quiz routes
 router.use("/quiz", quizRoutes);
 
-// Search route - /api/quizzes/search
-router.use("/quizzes", searchRouter);
+// Search route
+router.use("/search", searchRouter);
 
 /**
  * Health check endpoint
- * GET /api/health
  */
 router.get("/health", (req, res) => {
   res.json({
@@ -69,7 +52,6 @@ router.get("/health", (req, res) => {
 
 /**
  * Root endpoint
- * GET /api
  */
 router.get("/", (req, res) => {
   res.json({
@@ -78,10 +60,11 @@ router.get("/", (req, res) => {
     version: "1.0.0",
     endpoints: {
       years: "/api/years",
-      series: "/api/years/:year/series",
-      quizzes: "/api/years/:year/series/:series/quizzes",
+      yearDetail: "/api/years/:year",
+      series: "/api/series/:year",
+      quizzes: "/api/quizzes/:year/:series",
       quiz: "/api/quiz/:id",
-      search: "/api/quizzes/search?q=keyword",
+      search: "/api/search?q=keyword",
       health: "/api/health",
     },
     timestamp: new Date().toISOString(),

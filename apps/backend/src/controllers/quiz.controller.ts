@@ -4,7 +4,7 @@
  */
 
 import { Request, Response } from "express";
-import dataService from "../services/data.service";
+import dataService from "@/services/data.service";
 
 /**
  * GET /api/quiz/:id

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { fetchYears } from "@/lib/api";
+import { fetchYears } from "../lib/api";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -25,7 +25,7 @@ export default function HomePage() {
         {data.data.map((year: any) => (
           <Link
             key={year.year}
-            href={`/year/${year.year}`}
+            href={`/${year.year}`}
             className="p-6 border-2 border-gray-300 rounded-lg hover:border-blue-500 transition-colors"
           >
             <h2 className="text-2xl font-bold mb-2">سال {year.year}</h2>

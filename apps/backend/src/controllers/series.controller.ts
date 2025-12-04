@@ -4,7 +4,7 @@
  */
 
 import { Request, Response } from "express";
-import dataService from "../services/data.service";
+import dataService from "@/services/data.service";
 
 /**
  * GET /api/years/:year/series
@@ -15,6 +15,7 @@ export async function getSeriesByYear(
   res: Response
 ): Promise<void> {
   try {
+    console.log("req.params:", req.params);
     const year = parseInt(req.params.year, 10);
 
     // Validate year parameter
