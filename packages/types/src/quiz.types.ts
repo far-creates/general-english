@@ -4,6 +4,46 @@
  */
 
 /**
+ * Word explanation with examples and collocations
+ */
+export interface WordExplanation {
+  /** The word being explained */
+  word: string;
+
+  /** English meaning/definition */
+  meaning: string;
+
+  /** Persian translation */
+  translation: string;
+
+  /** Example sentences using the word */
+  examples?: string[];
+
+  /** Common collocations or phrases */
+  collocations?: string[];
+
+  /** Additional usage notes */
+  notes?: string;
+}
+
+/**
+ * Explanation for why a wrong answer is incorrect
+ */
+export interface WrongAnswerExplanation {
+  /** Index of the wrong option (0-based) */
+  optionIndex: number;
+
+  /** The wrong option text */
+  optionText: string;
+
+  /** Explanation of why this answer is wrong */
+  reason: string;
+
+  /** Persian translation of the reason (optional) */
+  reasonTranslation?: string;
+}
+
+/**
  * Represents a single question in a quiz
  */
 export interface Question {
@@ -30,6 +70,18 @@ export interface Question {
 
   /** Test number within the series */
   testNumber?: number;
+
+  /** NEW: Detailed word explanations */
+  wordExplanations?: WordExplanation[];
+
+  /** NEW: Persian translation of the question */
+  questionTranslation?: string;
+
+  /** NEW: Explanations for wrong answers */
+  wrongAnswerExplanations?: WrongAnswerExplanation[];
+
+  /** NEW: Vocabulary summary list */
+  vocabularySummary?: string[];
 }
 
 /**
