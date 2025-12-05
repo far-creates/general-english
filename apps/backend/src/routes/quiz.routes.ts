@@ -1,6 +1,6 @@
 /**
  * Quiz Routes
- * Defines routes for individual quiz endpoints
+ * Handles individual quiz endpoints
  */
 
 import { Router } from "express";
