@@ -9,7 +9,6 @@ import {
   getGradeLetter,
   getPerformanceMessage,
 } from "../../lib/utils/calculations";
-
 import Badge from "../atoms/Badge";
 
 interface ScoreCardProps {
