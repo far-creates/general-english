@@ -6,6 +6,8 @@
 import express, { Application } from "express";
 import cors from "cors";
 import routes from "./routes";
+import testRoutes from "./routes/test.routes";
+
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler";
 
 // Initialize Express app
@@ -44,6 +46,8 @@ app.use((req, res, next) => {
 // Mount all API routes under /api prefix
 app.use("/api", routes);
 
+// Routes
+app.use("/api", testRoutes);
 /**
  * Root endpoint
  */
